@@ -10,6 +10,21 @@ public class UnitMovement : NetworkBehaviour
 
     #region Server
 
+    // Use ServerCallback to prevent clients from accessing the function
+    [ServerCallback]
+    private void Update()
+    {
+        // This will prevent units we didn't tell to move from blocking
+        if (!agent.hasPath)
+            return;
+
+        // If the units remaining distance is close enough, stop the movement.
+        if (agent.remainingDistance > agent.stoppingDistance)
+            return;
+
+        agent.ResetPath();
+    }
+
     [Command]
     public void CmdMove(Vector3 position)
     {
