@@ -238,6 +238,7 @@ MonoBehaviour:
   syncInterval: 0.1
   agent: {fileID: 1003782508990924239}
   targeter: {fileID: 7874358970739189449}
+  chaseRange: 10
 --- !u!114 &3481731502521763221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +254,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   unitMovement: {fileID: 1506752581092166950}
+  targeter: {fileID: 7874358970739189449}
   onSelected:
     m_PersistentCalls:
       m_Calls:
@@ -283,7 +285,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  targeter: {fileID: 7874358970739189449}
 --- !u!114 &1740124882181845341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  target: {fileID: 0}
 --- !u!1 &5456785555680108065
 GameObject:
   m_ObjectHideFlags: 0
