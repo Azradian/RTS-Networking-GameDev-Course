@@ -7,6 +7,7 @@ using Mirror;
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
+    [SerializeField] private Targeter targeter = null;
 
     #region Server
 
@@ -28,6 +29,8 @@ public class UnitMovement : NetworkBehaviour
     [Command]
     public void CmdMove(Vector3 position)
     {
+        targeter.ClearTarget();
+
         // Is the position valid? If not, don't do anything!
         if (!NavMesh.SamplePosition(position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
             return;
