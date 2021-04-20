@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 
+// Manage Unit movement for setting destination, clearing path, and chasing targeted enemy units.
+
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
