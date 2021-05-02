@@ -1,10 +1,13 @@
 ﻿using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameOverHandler : NetworkBehaviour
 {
+    public static event Action<string> ClientOnGameOver;
+
     // List of bases the game keeps track of
     private List<UnitBase> bases = new List<UnitBase>();
 
@@ -37,11 +40,21 @@ public class GameOverHandler : NetworkBehaviour
         if (bases.Count != 1)
             return;
 
-        Debug.Log("Game Over!");
+        int playerID = bases[0].connectionToClient.connectionId;
+
+        RpcGameOver($"Player {playerID}");
     }
 
     #endregion
 
     #region Client
+
+    // Server needs to tell the client the game is over, so use RPC
+    [ClientRpc]
+    private void RpcGameOver(string winnerName)
+    {
+        ClientOnGameOver?.Invoke(winnerName);
+    }
+
     #endregion
 }
