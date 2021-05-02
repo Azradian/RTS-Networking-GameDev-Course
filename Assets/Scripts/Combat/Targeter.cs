@@ -14,7 +14,24 @@ public class Targeter : NetworkBehaviour
         return target;
     }
 
+    public override void OnStartServer()
+    {
+        GameOverHandler.ServerOnGameOver += ServerHandleGameOver;
+    }
+
+    public override void OnStopServer()
+    {
+        GameOverHandler.ServerOnGameOver -= ServerHandleGameOver;
+    }
+
     #region Server
+
+    [Server]
+    private void ServerHandleGameOver()
+    {
+        // When the game is over, clear our target
+        ClearTarget();
+    }
 
     // Set the target across the network
     [Command]
@@ -28,6 +45,7 @@ public class Targeter : NetworkBehaviour
     }
 
     // Now we need a way to clear the current target
+    [Server]
     public void ClearTarget()
     {
         target = null;

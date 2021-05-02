@@ -14,6 +14,23 @@ public class UnitMovement : NetworkBehaviour
 
     #region Server
 
+    public override void OnStartServer()
+    {
+        GameOverHandler.ServerOnGameOver += ServerHandleGameOver;
+    }
+
+    public override void OnStopServer()
+    {
+        GameOverHandler.ServerOnGameOver -= ServerHandleGameOver;
+    }
+
+    [Server]
+    private void ServerHandleGameOver()
+    {
+        // Stop the units from moving after the game is over
+        agent.ResetPath();
+    }
+
     // Use ServerCallback to prevent clients from accessing the function
     [ServerCallback]
     private void Update()

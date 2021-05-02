@@ -22,11 +22,13 @@ public class UnitSelectionHandler : MonoBehaviour
         //player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
 
         Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawend;
+        GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
     }
 
     private void OnDestroy()
     {
         Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawend;
+        GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
     }
 
     private void Update()
@@ -134,5 +136,11 @@ public class UnitSelectionHandler : MonoBehaviour
         unitSelectionArea.sizeDelta = new Vector2(Math.Abs(areaWidth), Mathf.Abs(areaHeight));
         unitSelectionArea.anchoredPosition = startPosition + new Vector2(areaWidth / 2, areaHeight / 2);
 
+    }
+
+    // Client side game over function
+    private void ClientHandleGameOver(string winnerName)
+    {
+        enabled = false;
     }
 }

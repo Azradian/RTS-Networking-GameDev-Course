@@ -13,12 +13,31 @@ public class Health : NetworkBehaviour
 
     public event Action ServerOnDie;
     public event Action<int, int> ClientOnHealthUpdated;
+
     #region Server
 
     // Let the server create everyone's health
     public override void OnStartServer()
     {
         currentHealth = maxHealth;
+
+        UnitBase.ServerOnPlayerDie += ServerHandlePlayerDie;
+    }
+
+    public override void OnStopServer()
+    {
+        UnitBase.ServerOnPlayerDie -= ServerHandlePlayerDie;
+    }
+
+    [Server]
+    private void ServerHandlePlayerDie(int connectionID)
+    {
+        // If the player who died is not the passed in connection, get out
+        if (connectionToClient.connectionId != connectionID)
+            return;
+
+        // If the connection's base is destroyed destroy all of its units
+        DealDamage(currentHealth);
     }
 
     [Server]
@@ -35,8 +54,6 @@ public class Health : NetworkBehaviour
 
         // Listens in 
         ServerOnDie?.Invoke();
-
-        Debug.Log("We died");
     }
 
     #endregion
