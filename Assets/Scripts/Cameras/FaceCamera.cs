@@ -1,0 +1,20 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FaceCamera : MonoBehaviour
+{
+    private Transform mainCameraTransform;
+
+    void Start()
+    {
+        mainCameraTransform = Camera.main.transform;
+    }
+
+    // LateUpdate is an update function that happens right after the typical update function
+    void LateUpdate()
+    {
+        transform.LookAt(transform.position + mainCameraTransform.rotation * Vector3.forward,
+            mainCameraTransform.rotation * Vector3.up);
+    }
+}
