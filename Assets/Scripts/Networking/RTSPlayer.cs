@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RTSPlayer : NetworkBehaviour
 {
+    [SerializeField] private Building[] buildings = new Building[0];
+
     private List<Unit> playerUnits = new List<Unit>();
     private List<Building> playerBuildings = new List<Building>();
 
@@ -37,6 +39,31 @@ public class RTSPlayer : NetworkBehaviour
 
         Building.ServerOnBuildingSpawned -= ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandleBuildingDespawned;
+    }
+
+    [Command]
+    public void CmdTryPlaceBuilding(int buildingId, Vector3 spawnpoint)
+    {
+        // Figure out which building is which ID
+        Building buildingToPlace = null;
+
+        // loop over each building to find the id we're looking for
+        foreach (Building building in buildings)
+        {
+            if (building.GetId() == buildingId)
+            {
+                buildingToPlace = building;
+                break;
+            }
+        }
+
+        // Can't find the buildingId requested, lets leave
+        if (buildingToPlace == null)
+            return;
+
+        // Now we spawn the proper building and give authority to the player spawning it
+        GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, spawnpoint, buildingToPlace.transform.rotation);
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
     }
 
     private void ServerHandleUnitSpawned(Unit unit)
