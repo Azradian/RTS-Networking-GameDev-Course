@@ -8,6 +8,7 @@ using System;
 public class Unit : NetworkBehaviour
 {
     // Unity event th recognize when a unity is selected
+    [SerializeField] private int resourceCost = 10;
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private Targeter targeter = null;
     [SerializeField] private Health health = null;
@@ -20,6 +21,11 @@ public class Unit : NetworkBehaviour
 
     public static event Action<Unit> AuthorityOnUnitSpawned;
     public static event Action<Unit> AuthorityOnUnitDespawned;
+
+    public int GetResourceCost()
+    {
+        return resourceCost;
+    }
 
     public UnitMovement GetUnitMovement()
     {
