@@ -133,6 +133,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2240360445362429266, guid: f5e5de8b0e2ef504ead169c3fbade208,
+        type: 3}
+      propertyPath: colorRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240360445362429266, guid: f5e5de8b0e2ef504ead169c3fbade208,
+        type: 3}
+      propertyPath: colorRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 4417892508131479032}
     - target: {fileID: 3569151417234317877, guid: f5e5de8b0e2ef504ead169c3fbade208,
         type: 3}
       propertyPath: sceneId
