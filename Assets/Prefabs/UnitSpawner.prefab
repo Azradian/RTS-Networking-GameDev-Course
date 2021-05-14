@@ -348,6 +348,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8420296142226245493, guid: f5e5de8b0e2ef504ead169c3fbade208,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420296142226245493, guid: f5e5de8b0e2ef504ead169c3fbade208,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8536557426787759257, guid: f5e5de8b0e2ef504ead169c3fbade208,
         type: 3}
       propertyPath: aimAtPoint
