@@ -17,7 +17,7 @@ public class TeamColorSetter : NetworkBehaviour
         RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
         teamColor = player.GetTeamColor();
-        Debug.Log($"Your team color is {teamColor}");
+        //Debug.Log($"Your team color is {teamColor}");
     }
 
     #endregion
