@@ -43,8 +43,8 @@ public class Minimap : MonoBehaviour, IPointerDownHandler, IDragHandler
                                                             out Vector2 localPoint))
             return;
 
-        Vector2 lerp = new Vector2((-localPoint.x - minimapRect.rect.x) / minimapRect.rect.width,
-                                    (-localPoint.y - minimapRect.rect.y) / minimapRect.rect.height);
+        Vector2 lerp = new Vector2((localPoint.x - minimapRect.rect.x) / minimapRect.rect.width,
+                                    (localPoint.y - minimapRect.rect.y) / minimapRect.rect.height);
 
         Vector3 newCameraPos = new Vector3(Mathf.Lerp(-mapScale, mapScale, lerp.x),
                                             playerCameraTransform.position.y,
