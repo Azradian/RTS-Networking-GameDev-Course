@@ -1651,7 +1651,7 @@ PrefabInstance:
         type: 3}
       propertyPath: building
       value: 
-      objectReference: {fileID: 2499474901480178554, guid: 8174372b19df67d458923bdf378c70ec,
+      objectReference: {fileID: 8547586179695976805, guid: ba2d1dc84eba65d41b46addc83899edb,
         type: 3}
     m_RemovedComponents:
     - {fileID: 7545849812314215980, guid: 13a28fd615e726245ba72fd5842cfd2c, type: 3}
