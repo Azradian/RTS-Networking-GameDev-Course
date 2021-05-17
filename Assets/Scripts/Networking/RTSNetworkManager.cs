@@ -3,11 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.SceneManagement;
+using System;
 
 public class RTSNetworkManager : NetworkManager
 {
     [SerializeField] private GameObject unitSpawnerPrefab = null;
     [SerializeField] private GameOverHandler gameOverHandlerPrefab = null;
+
+    public static event Action ClientOnConnected;
+    public static event Action ClientOnDisconnected;
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+
+        ClientOnConnected?.Invoke();
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        base.OnClientDisconnect(conn);
+
+        ClientOnDisconnected?.Invoke();
+    }
 
     // Do this whenever a player is added to the server
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -22,11 +40,15 @@ public class RTSNetworkManager : NetworkManager
             UnityEngine.Random.Range(0f, 1f),
             UnityEngine.Random.Range(0f, 1f)));
 
+        /*
+
         // Spawn in base for the player
         GameObject unitSpawnerInstance = Instantiate(unitSpawnerPrefab, conn.identity.transform.position, conn.identity.transform.rotation);
 
         // Give ownership to the respective base
         NetworkServer.Spawn(unitSpawnerInstance, conn);
+
+        */
     }
 
     public override void OnServerSceneChanged(string sceneName)

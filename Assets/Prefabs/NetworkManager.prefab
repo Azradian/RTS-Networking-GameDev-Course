@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4646798062125350859}
   - component: {fileID: 4844313019561069039}
   - component: {fileID: 3277214428423849281}
-  - component: {fileID: 3409950729690864591}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -65,12 +64,15 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 3091464071770921787, guid: 0e7617d9c9a4a374f88adbc6f418d8e9, type: 3}
   - {fileID: 6884566123578919269, guid: b1a5d91854ae15c469b2c1f138d1f927, type: 3}
-  - {fileID: 5316906535551013554, guid: 4deb0e7477293c14bbacfd37a9742308, type: 3}
   - {fileID: 4917565866751546113, guid: 28a29d82bbbf691418ddb958a7d5f90e, type: 3}
-  - {fileID: 6884566123578919269, guid: 888adabe0f2963f4eb891a84b725ade0, type: 3}
   - {fileID: 6884566123578919269, guid: ba2d1dc84eba65d41b46addc83899edb, type: 3}
+  - {fileID: 8645000715693809771, guid: 3bb7f7b1c31a00c478a61ed4b5541e62, type: 3}
+  - {fileID: 1679314765288446337, guid: 9e283371baa992647a954d4c9a49a859, type: 3}
+  - {fileID: 845039626538593146, guid: 8174372b19df67d458923bdf378c70ec, type: 3}
+  - {fileID: 429007925246887083, guid: c39670df155a63341b07644efd9907c0, type: 3}
+  - {fileID: 3794386050462430945, guid: dcf3f53c82018a447a3e770de77bee80, type: 3}
+  - {fileID: 3268281036261874715, guid: fd933499285d7c943b94fbc1e4d3a59b, type: 3}
   unitSpawnerPrefab: {fileID: 6884566123578919269, guid: b1a5d91854ae15c469b2c1f138d1f927,
     type: 3}
   gameOverHandlerPrefab: {fileID: 8945678167839424322, guid: 28a29d82bbbf691418ddb958a7d5f90e,
@@ -97,18 +99,3 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!114 &3409950729690864591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4646798062125350858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
