@@ -171,7 +171,7 @@ Transform:
   m_Children:
   - {fileID: 396938238}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &71713254
 MonoBehaviour:
@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -671,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1174,7 +1174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1526,7 +1526,7 @@ PrefabInstance:
     - target: {fileID: 6399006135282107747, guid: 1cfd96172017d6d40ae9dd2bc4724981,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6399006135282107747, guid: 1cfd96172017d6d40ae9dd2bc4724981,
         type: 3}
@@ -1651,7 +1651,7 @@ PrefabInstance:
         type: 3}
       propertyPath: building
       value: 
-      objectReference: {fileID: 8547586179695976805, guid: 888adabe0f2963f4eb891a84b725ade0,
+      objectReference: {fileID: 2499474901480178554, guid: 8174372b19df67d458923bdf378c70ec,
         type: 3}
     m_RemovedComponents:
     - {fileID: 7545849812314215980, guid: 13a28fd615e726245ba72fd5842cfd2c, type: 3}
@@ -1671,7 +1671,7 @@ PrefabInstance:
     - target: {fileID: 3908896884430665717, guid: bedba1490c49b0343b0a70b5f5a8ae62,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3908896884430665717, guid: bedba1490c49b0343b0a70b5f5a8ae62,
         type: 3}
