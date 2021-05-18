@@ -19,7 +19,7 @@ public class UnitSelectionHandler : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-        //player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
 
         Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawend;
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
@@ -33,10 +33,6 @@ public class UnitSelectionHandler : MonoBehaviour
 
     private void Update()
     {
-        // Temp fix until lobby
-        if (player == null && NetworkClient.connection != null)
-            player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-
         // Drag and select a group of units
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {

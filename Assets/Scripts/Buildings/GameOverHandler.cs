@@ -16,24 +16,24 @@ public class GameOverHandler : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        UnitBase.ServerOnBaseSpawned += ServerhandleBaseSpawned;
-        UnitBase.ServerOnBaseDespawned += ServerhandleBaseDespawned;
+        UnitBase.ServerOnBaseSpawned += ServerHandleBaseSpawned;
+        UnitBase.ServerOnBaseDespawned += ServerHandleBaseDespawned;
     }
 
     public override void OnStopServer()
     {
-        UnitBase.ServerOnBaseSpawned -= ServerhandleBaseSpawned;
-        UnitBase.ServerOnBaseDespawned -= ServerhandleBaseDespawned;
+        UnitBase.ServerOnBaseSpawned -= ServerHandleBaseSpawned;
+        UnitBase.ServerOnBaseDespawned -= ServerHandleBaseDespawned;
     }
 
     [Server]
-    private void ServerhandleBaseSpawned(UnitBase unitBase)
+    private void ServerHandleBaseSpawned(UnitBase unitBase)
     {
         bases.Add(unitBase);
     }
 
     [Server]
-    private void ServerhandleBaseDespawned(UnitBase unitBase)
+    private void ServerHandleBaseDespawned(UnitBase unitBase)
     {
         bases.Remove(unitBase);
 
@@ -41,13 +41,14 @@ public class GameOverHandler : NetworkBehaviour
         if (bases.Count != 1)
             return;
 
-        int playerID = bases[0].connectionToClient.connectionId;
+        int playerId = bases[0].connectionToClient.connectionId;
 
-        RpcGameOver($"Player {playerID}");
+        RpcGameOver($"Player {playerId}");
 
         // Server enables game over
         ServerOnGameOver?.Invoke();
     }
+
 
     #endregion
 
@@ -55,9 +56,9 @@ public class GameOverHandler : NetworkBehaviour
 
     // Server needs to tell the client the game is over, so use RPC
     [ClientRpc]
-    private void RpcGameOver(string winnerName)
+    private void RpcGameOver(string winner)
     {
-        ClientOnGameOver?.Invoke(winnerName);
+        ClientOnGameOver?.Invoke(winner);
     }
 
     #endregion

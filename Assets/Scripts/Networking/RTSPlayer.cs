@@ -14,12 +14,22 @@ public class RTSPlayer : NetworkBehaviour
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int resources = 500;
 
+    [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
+    private bool isParterOwner = false;
+
+    [SyncVar(hook = nameof(ClientHandleDisplayNameUpdated))]
+    private string displayName;
+
     private Color teamColor = new Color();
 
     private List<Unit> playerUnits = new List<Unit>();
     private List<Building> playerBuildings = new List<Building>();
 
     public event Action<int> ClientOnResourcesUpdated;
+
+    public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
+    public static event Action ClientOnInfoUpdated;
+
 
     public Transform GetCameraTransform()
     {
@@ -46,6 +56,16 @@ public class RTSPlayer : NetworkBehaviour
         return resources;
     }
 
+    public bool GetIsPartyOwner()
+    {
+        return GetIsPartyOwner();
+    }
+
+    public string GetDisplayName()
+    {
+        return displayName;
+    }
+
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
     {
         // Check if we are overlapping with another building
@@ -70,6 +90,8 @@ public class RTSPlayer : NetworkBehaviour
 
         Building.ServerOnBuildingSpawned += ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned += ServerHandleBuildingDespawned;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnStopServer()
@@ -92,6 +114,27 @@ public class RTSPlayer : NetworkBehaviour
     public void SetResources(int newResources)
     {
         resources = newResources;
+    }
+
+    [Server]
+    public void SetPartyOwner(bool state)
+    {
+        isParterOwner = state;
+    }
+
+    [Server]
+    public void SetDisplayName(string newDisplayName)
+    {
+        displayName = newDisplayName;
+    }
+
+    [Command]
+    public void CmdStartGame()
+    {
+        if (!isParterOwner)
+            return;
+
+        ((RTSNetworkManager)NetworkManager.singleton).StartGame();
     }
 
     [Command]
@@ -179,9 +222,28 @@ public class RTSPlayer : NetworkBehaviour
         Building.AuthorityOnBuildingDespawned += AuthorityHandleBuildingDespawned;
     }
 
+    public override void OnStartClient()
+    {
+        // If we are the host we don't want to add the player twice
+        if (NetworkServer.active)
+            return;
+
+        DontDestroyOnLoad(gameObject);
+
+        ((RTSNetworkManager)NetworkManager.singleton).Players.Add(this);
+    }
+
     public override void OnStopClient()
     {
-        if (!isClientOnly || !hasAuthority)
+        ClientOnInfoUpdated?.Invoke();
+
+        // Stop here if we are the server
+        if (!isClientOnly)
+            return;
+
+        ((RTSNetworkManager)NetworkManager.singleton).Players.Remove(this);
+
+        if (!hasAuthority)
             return;
 
         Unit.AuthorityOnUnitSpawned -= AuthorityHandleUnitSpawned;
@@ -195,6 +257,19 @@ public class RTSPlayer : NetworkBehaviour
     {
         // Whenever our value is updated, tell the UI the new resource value
         ClientOnResourcesUpdated?.Invoke(newResources);
+    }
+
+    private void ClientHandleDisplayNameUpdated(string oldDisplayName, string newDisplayName)
+    {
+        ClientOnInfoUpdated?.Invoke();
+    }
+
+    private void AuthorityHandlePartyOwnerStateUpdated(bool oldState, bool newState)
+    {
+        if (!hasAuthority)
+            return;
+
+        AuthorityOnPartyOwnerStateUpdated?.Invoke(newState);
     }
 
     private void AuthorityHandleUnitSpawned(Unit unit)
