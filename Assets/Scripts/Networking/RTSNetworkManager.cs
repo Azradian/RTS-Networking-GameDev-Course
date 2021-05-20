@@ -31,9 +31,18 @@ public class RTSNetworkManager : NetworkManager
     {
         RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
 
+        Debug.Log("We made the RTS Player");
+
         Players.Remove(player);
 
+        Debug.Log("We removed the player from the list");
+
+        Debug.Log(conn.identity);
+
         base.OnServerDisconnect(conn);
+
+        Debug.Log(conn.identity);
+
     }
 
     public override void OnStopServer()

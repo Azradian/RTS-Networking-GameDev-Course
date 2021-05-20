@@ -20,7 +20,7 @@ public class GameOverHandler : NetworkBehaviour
         UnitBase.ServerOnBaseDespawned += ServerHandleBaseDespawned;
     }
 
-    public override void OnStopServer()
+    private void OnDestroy()
     {
         UnitBase.ServerOnBaseSpawned -= ServerHandleBaseSpawned;
         UnitBase.ServerOnBaseDespawned -= ServerHandleBaseDespawned;
