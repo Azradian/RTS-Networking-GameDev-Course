@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.SceneManagement;
 using System;
+using Steamworks;
 
 public class RTSNetworkManager : NetworkManager
 {
@@ -16,6 +17,8 @@ public class RTSNetworkManager : NetworkManager
     private bool isGameInProgress = false;
 
     public List<RTSPlayer> Players { get; } = new List<RTSPlayer>();
+
+    public static ulong LobbyID { get; set; }
 
     #region Server
 
@@ -70,7 +73,10 @@ public class RTSNetworkManager : NetworkManager
 
         Players.Add(player);
 
-        player.SetDisplayName($"Player {Players.Count}");
+        //player.SetDisplayName($"Player {Players.Count}");
+
+        CSteamID steamId = SteamMatchmaking.GetLobbyMemberByIndex(new CSteamID(LobbyID), numPlayers - 1);
+        player.SetDisplayName($"{SteamFriends.GetFriendPersonaName(steamId)}");
 
         player.SetTeamColor(new Color(
             UnityEngine.Random.Range(0f, 1f),

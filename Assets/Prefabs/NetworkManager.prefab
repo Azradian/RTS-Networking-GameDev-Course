@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4646798062125350859}
   - component: {fileID: 4844313019561069039}
   - component: {fileID: 3277214428423849281}
+  - component: {fileID: 838353563143755939}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -45,15 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  showDebugMessages: 0
   serverTickRate: 30
   serverBatching: 0
   serverBatchInterval: 0
   offlineScene: Assets/Scenes/Scene_Menu.unity
   onlineScene: 
-  transport: {fileID: 3277214428423849281}
+  transport: {fileID: 838353563143755939}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -99,3 +100,21 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
+--- !u!114 &838353563143755939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4646798062125350858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea368fb6f27ec2f40a40e20977992b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Channels: 0200000001000000
+  Timeout: 25
+  SteamAppID: 480
+  AllowSteamRelay: 1
+  UseNextGenSteamNetworking: 1
+  SteamUserID: 0

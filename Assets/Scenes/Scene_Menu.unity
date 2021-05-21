@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landingPageUI: {fileID: 1948461681}
+  usingSteam: 1
 --- !u!1 &562783415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,7 +2504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lobbyUI: {fileID: 325930648}
-  landingPageUI: {fileID: 1948461681}
   startGameButton: {fileID: 1793639053}
   playerNameTexts:
   - {fileID: 98920487}
@@ -3343,6 +3343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844313019561069039, guid: acc56083db6f7f7449c5990824e968ef,
+        type: 3}
+      propertyPath: maxConnections
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acc56083db6f7f7449c5990824e968ef, type: 3}
